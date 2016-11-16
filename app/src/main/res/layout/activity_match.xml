@@ -22,9 +22,29 @@
         android:text="Get match"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="79dp"
         android:id="@+id/matchButton"
-        android:layout_below="@+id/nameTxt2"
-        android:layout_centerHorizontal="true" />
+        android:layout_above="@+id/button3"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="31dp" />
+
+    <Button
+        android:text="Change Pofile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button2"
+        android:layout_marginBottom="78dp"
+        android:layout_alignParentBottom="true"
+        android:layout_toStartOf="@+id/nameTxt2"
+        android:layout_marginEnd="12dp" />
+
+    <Button
+        android:text="See all users"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button3"
+        android:layout_marginStart="15dp"
+        android:layout_alignBaseline="@+id/button2"
+        android:layout_alignBottom="@+id/button2"
+        android:layout_toEndOf="@+id/nameTxt2" />
 
 </RelativeLayout>
