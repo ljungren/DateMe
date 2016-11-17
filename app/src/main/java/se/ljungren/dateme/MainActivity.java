@@ -47,8 +47,8 @@ public class MainActivity extends AppCompatActivity {
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build();
-
-    private String userId;
+    
+    private User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,51 +76,35 @@ public class MainActivity extends AppCompatActivity {
                 String info = infoTxt.getText().toString();
                 String tel = telTxt.getText().toString();
                 Boolean active = activeBox.isChecked();
-
+                
+                user = new User(name, info, tel, active);
 
                 //register, send POST to web service
-                User user = new User(name, info, tel, active);
                 ApiServiceInterface api = retrofit.create(ApiServiceInterface.class);
-                Call<User> call = api.createUser(user);
+                /*Call<User> call = api.createUser(user);
                 call.enqueue(new Callback<User>() {
                     @Override
                     public void onResponse(Call<User> call, Response<User> response) {
                         System.out.println(response);
                         System.out.println(response.body());
                         System.out.println(response.body().getId());
-                        //userId = response.body().getId();
+                        user.setId(response.body().getId());
                     }
 
                     @Override
                     public void onFailure(Call<User> call, Throwable t) {
                         System.out.println(t);
                     }
-                });
+                });*/
 
-                //save id to sharedPref
+                //save id and user data to sharedPref
                 SharedPreferences userInfo = getSharedPreferences(PREFS, 0);
                 SharedPreferences.Editor editor = userInfo.edit();
                 editor.putString("userName", name);
                 editor.putString("userInfo", info);
                 editor.putString("userPhoneNumber", tel);
-                editor.putString("userId", userId);
+                editor.putString("userId", user.getId());
                 editor.commit();
-                System.out.println(userId);
-
-                //Call<User> call = apiService.getUserList();
-                /*call.enqueue(new Callback<User>() {
-                    @Override
-                    public void onResponse(Call<User> call, Response<User> response) {
-
-                    }
-
-                    @Override
-                    public void onFailure(Call<User> call, Throwable t) {
-
-                    }
-                }*/
-
-
 
                 //go to next view
                 startActivity(intent);
