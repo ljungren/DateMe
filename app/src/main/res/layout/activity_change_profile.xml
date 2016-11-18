@@ -14,40 +14,48 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:text="Name"
         android:ems="10"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="23dp"
-        android:id="@+id/nameTxt" />
+        android:id="@+id/nameTxt"
+        android:hint="Name" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:text="Name"
         android:ems="10"
         android:id="@+id/telTxt"
         android:layout_below="@+id/infoTxt"
         android:layout_alignStart="@+id/infoTxt"
-        android:layout_marginTop="37dp" />
+        android:layout_marginTop="37dp"
+        android:hint="Phone number" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:text="Name"
         android:ems="10"
         android:layout_marginTop="45dp"
         android:id="@+id/infoTxt"
         android:layout_below="@+id/nameTxt"
-        android:layout_alignStart="@+id/nameTxt" />
+        android:layout_alignStart="@+id/nameTxt"
+        android:hint="Info" />
+
+    <Button
+        android:text="Delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/saveButton"
+        android:layout_alignEnd="@+id/telTxt"
+        android:id="@+id/deleteButton" />
 
     <CheckBox
         android:text="looking for people to meet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="57dp"
+        android:layout_marginTop="48dp"
         android:id="@+id/active"
         android:layout_below="@+id/telTxt"
         android:layout_alignStart="@+id/telTxt" />
@@ -57,7 +65,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/saveButton"
+        android:layout_marginTop="50dp"
         android:layout_below="@+id/active"
+        android:layout_alignStart="@+id/active" />
+
+    <Button
+        android:text="Back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="54dp" />
+        android:id="@+id/backButton" />
 </RelativeLayout>
