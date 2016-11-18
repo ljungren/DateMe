@@ -64,50 +64,57 @@ public class MainActivity extends AppCompatActivity {
         telTxt = (EditText) findViewById(R.id.telTxt);
         activeBox = (CheckBox) findViewById(R.id.active);
 
-        Button regButton = (Button) findViewById(R.id.regButton);
+        //Read pref and update fields
+        SharedPreferences userInfo = getSharedPreferences(PREFS, 0);
+        if(userInfo.getString("userId", null)!=null){
+            Intent intent = new Intent(MainActivity.this, MatchActivity.class);
+            startActivity(intent);
+        }
 
+        Button regButton = (Button) findViewById(R.id.regButton);
         regButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, MatchActivity.class);
 
                 //save data
                 String name = nameTxt.getText().toString();
                 String info = infoTxt.getText().toString();
                 String tel = telTxt.getText().toString();
                 Boolean active = activeBox.isChecked();
-                
+
+                //create user object with data
                 user = new User(name, info, tel, active);
 
                 //register, send POST to web service
                 ApiServiceInterface api = retrofit.create(ApiServiceInterface.class);
-                /*Call<User> call = api.createUser(user);
+                Call<User> call = api.createUser(user);
                 call.enqueue(new Callback<User>() {
                     @Override
                     public void onResponse(Call<User> call, Response<User> response) {
-                        System.out.println(response);
-                        System.out.println(response.body());
-                        System.out.println(response.body().getId());
+                        Intent intent = new Intent(MainActivity.this, MatchActivity.class);
+
+                        //set response id
                         user.setId(response.body().getId());
+
+                        //save id and user data to sharedPref
+                        SharedPreferences userInfo = getSharedPreferences(PREFS, 0);
+                        SharedPreferences.Editor editor = userInfo.edit();
+                        editor.putString("userName", user.getName());
+                        editor.putString("userInfo", user.getInfo());
+                        editor.putString("userPhoneNumber", user.getTelno());
+                        editor.putBoolean("active", user.getActive());
+                        editor.putString("userId", user.getId());
+                        editor.apply();
+
+                        //go to match view
+                        startActivity(intent);
                     }
 
                     @Override
                     public void onFailure(Call<User> call, Throwable t) {
                         System.out.println(t);
                     }
-                });*/
-
-                //save id and user data to sharedPref
-                SharedPreferences userInfo = getSharedPreferences(PREFS, 0);
-                SharedPreferences.Editor editor = userInfo.edit();
-                editor.putString("userName", name);
-                editor.putString("userInfo", info);
-                editor.putString("userPhoneNumber", tel);
-                editor.putString("userId", user.getId());
-                editor.commit();
-
-                //go to next view
-                startActivity(intent);
+                });
             }
         });
     }

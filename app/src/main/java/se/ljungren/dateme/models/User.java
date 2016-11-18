@@ -6,17 +6,29 @@ package se.ljungren.dateme.models;
 
 import java.util.HashMap;
 import java.util.Map;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 public class User {
 
+    @SerializedName("__v")
+    @Expose
     private Integer v;
+    @SerializedName("_id")
+    @Expose
     private String id;
+    @SerializedName("active")
+    @Expose
     private Boolean active;
+    @SerializedName("name")
+    @Expose
     private String name;
+    @SerializedName("info")
+    @Expose
     private String info;
+    @SerializedName("telno")
+    @Expose
     private String telno;
-    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
-
 
     public User(String name, String info, String telno, Boolean active){
         this.name = name;
@@ -115,20 +127,21 @@ public class User {
         this.info = info;
     }
 
+    /**
+     *
+     * @return
+     * The telno
+     */
     public String getTelno() {
         return telno;
     }
 
+    /**
+     *
+     * @param telno
+     * The telno
+     */
     public void setTelno(String telno) {
         this.telno = telno;
     }
-
-    public Map<String, Object> getAdditionalProperties() {
-        return this.additionalProperties;
-    }
-
-    public void setAdditionalProperty(String name, Object value) {
-        this.additionalProperties.put(name, value);
-    }
-
 }
